@@ -1,0 +1,60 @@
+<!-- <ion-view title="Signup">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <form>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">First Name</span>
+                    <input type="text" placeholder="First Name"  ng-model="creds.first_name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" placeholder="Last Name" ng-model="creds.last_name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" placeholder="email address" ng-model="creds.email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password"  ng-model="creds.password">
+                </label>
+            </ion-list>
+            <button class="button button-stable button-block"
+                    ng-click="signUpUser()">Sign up</button>
+        </form>
+    </ion-content>
+</ion-view> -->
+
+
+<div class="tabs-striped  tabs-background-positive tabs-color-light">
+    <div class="tabs">
+      <a class="tab-item " ui-sref='app-login'><i class="icon ion-unlocked"></i> Login </a>
+      <a class="tab-item active" ui-sref='app-signup'> <i class="icon ion-person"></i> Sing Up </a>
+    </div>
+  </div>
+
+<ion-view view-title="Sign Up" class="loginBg" hide-nav-bar="true" >
+  <ion-content class="padding">
+
+  <div class="row responsive-sm padding remvoeBP">
+      <div class="col">
+           <div class=""><img src=""></div>
+            
+            <div class="list list-inset removePM">
+              <label class="item item-input"><input type="text" placeholder="Full Name"> </label>
+              <label class="item item-input"><input type="text" placeholder="Email Address"> </label>
+              <label class="item item-input"><input type="text" placeholder="Phone Number"> </label>
+              <label class="item item-input"><input type="password" placeholder="Password"> </label>
+            </div>
+
+            <div class="loginButton"><button class="button ion-person button-block button-balanced" ng-click="signUpUser()"> Register </button>  </div>
+      </div>
+  </div>
+
+    <div class="row  padding removePM">
+      <div class="col"> <a class=" button-positive button button-block" ng-click="facebookSignIn()"><i class="icon ion-social-facebook"></i></a> </div>
+      <div class="col"> <a class="button-calm button button-block" ng-click="twitterSignIn()"><i class="icon ion-social-twitter"></i></a> </div>
+    </div>
+
+  </ion-content>
+</ion-view>
