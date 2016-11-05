@@ -1,6 +1,6 @@
-angular.module('user.services', [])
+angular.module('dataStoreService.services', [])
 
-    .service('UserService', ['$q', 'ParseConfiguration',
+    .service('DataStoreService', ['$q', 'ParseConfiguration',
         function ($q, ParseConfiguration) {
 
             var parseInitialized = false;
@@ -14,19 +14,21 @@ angular.module('user.services', [])
                  */
                 init: function () {
                     // if initialized, then return the activeUser
-                    if (parseInitialized === false) {
-                        Parse.serverURL = 'http://162.243.118.87:1338/parse';
-                        Parse.initialize("appID");
-                        parseInitialized = true;
-                        console.log("parse initialized in init function");
-                    }
+                    // if (parseInitialized === false) {
+                    //     Parse.initialize(ParseConfiguration.applicationId, ParseConfiguration.masterKey);
+                    //     Parse.serverURL = 'http://104.236.215.110:1337/parse';
+                    //     parseInitialized = true;
+                    //     console.log("parse initialized in init function");
+                    // }
                     
-                    var currentUser = Parse.User.current();
-                    if (currentUser) {
-                        return $q.when(currentUser);
-                    } else {
-                        return $q.reject({error: "noUser"});
-                    }
+                    // var currentUser = Parse.User.current();
+                    // if (currentUser) {
+                    //     return $q.when(currentUser);
+                    // } else {
+                    //     return $q.reject({error: "noUser"});
+                    // }
+
+                    console.log("parse : " + Parse.User.current());
 
                 },
                 /**

@@ -1,6 +1,8 @@
-﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout, UserService, $state) {
-    // Form data for the login modal
+﻿app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout, UserService, $state, DataStoreService) {
+    //Form data for the login modal
     $scope.loginData = {};
+
+    DataStoreService.init();
 
     var navIcons = document.getElementsByClassName('ion-navicon');
     for (var i = 0; i < navIcons.length; i++) {

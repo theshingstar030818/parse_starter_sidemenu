@@ -7,15 +7,15 @@ var app = angular.module('starter', [
     'ionic', 
     'ionic-material',
     'user.controllers',
-    'user.services'
+    'user.services',
+    'dataStoreService.services'
     ]);
 
 app.value('ParseConfiguration', {
-    applicationId: "myAppId",
-    masterKey: "123"
+    applicationId: "myAppId"
 })
 
-app.run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform, UserService) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -26,9 +26,7 @@ app.run(function ($ionicPlatform) {
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
-
-        Parse.initialize("myAppId");
-        Parse.serverURL = 'http://104.236.215.110:1337/parse';
+        UserService.init();
     });
 })
 

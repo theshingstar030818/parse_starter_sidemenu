@@ -12,8 +12,8 @@ angular.module('user.controllers', [])
 
             // ng-model holding values from view/html
             $scope.creds = {
-                username: "rana@rana.com",
-                password: "rana"
+                username: "22",
+                password: "22"
             };
 
             /**
@@ -71,7 +71,7 @@ angular.module('user.controllers', [])
              */
             $scope.signUpUser = function () {
 
-                UserService.init();
+                //UserService.init();
 
                 UserService.createUser($scope.creds).then(function (_data) {
                     $scope.user = _data;
