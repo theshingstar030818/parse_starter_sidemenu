@@ -1,4 +1,4 @@
-<!-- <ion-view title="Login"  hide-back-button="true">
+<ion-view title="Login"  hide-back-button="true">
     <ion-content padding="true" class="has-header">
         <form>
             <ion-list>
@@ -16,38 +16,4 @@
             <a ui-sref='app-signup' class="button button-positive button-clear button-block">Or create an account</a>
         </form>
     </ion-content>
-</ion-view> -->
-
-
-<div class="tabs-striped  tabs-background-positive tabs-color-light">
-    <div class="tabs">
-      <a class="tab-item active" ui-sref='app-login'><i class="icon ion-unlocked"></i> Login</a>
-      <a class="tab-item" ui-sref='app-signup'> <i class="icon ion-person"></i> Sing Up </a>
-    </div>
- </div>
-
-<ion-view view-title="Sign In" class="loginBg" hide-nav-bar="true" >
-<!-- <ion-nav-title><img src="img/logo.png" width="40"></ion-nav-title> -->
-
-  <ion-content class="padding">
-
-  <div class="row responsive-sm padding remvoeBP">
-      <div class="col">
-            <div class="app-logo"><img style="margin-left: auto; margin-right: auto; display: block;" src="img/logo-256.png"></div> 
-            
-            <div class="list list-inset removePM">
-              <label class="item item-input"><input type="text" ng-model="creds.username" placeholder="Email Address" > </label>
-              <label class="item item-input"><input type="password" ng-model="creds.password" placeholder="Password" > </label>
-            </div>
-
-            <div class="loginButton"><button class="button ion-unlocked button-block button-balanced" ng-click="doLoginAction()" > Login </button>  </div>
-      </div>
-  </div>
-
-    <div class="row  padding removePM">
-      <div class="col"> <a class=" button-positive button button-block" ng-click="facebookSignIn()"><i class="icon ion-social-facebook"></i></a> </div>
-      <div class="col"> <a class="button-calm button button-block" ng-click="twitterSignIn()"><i class="icon ion-social-twitter"></i></a> </div>
-    </div>
-
-  </ion-content>
 </ion-view>

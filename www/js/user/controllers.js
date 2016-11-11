@@ -12,8 +12,8 @@ angular.module('user.controllers', [])
 
             // ng-model holding values from view/html
             $scope.creds = {
-                username: "22",
-                password: "22"
+                username: "tanzeelrana",
+                password: "yarehman"
             };
 
             /**
@@ -36,25 +36,31 @@ angular.module('user.controllers', [])
                 UserService.login($scope.creds.username, $scope.creds.password)
                     .then(function (_response) {
 
-                        alert("login success " + _response.attributes.username);
-                        if(window.cordova && window.cordova.plugins){
-                            FCMPlugin.getToken(
-                              function(token){
-                                //alert(token);
+                        UserService.getUser(_response.toJSON())
+                            .then(function (_response) {
                                 
-                                // transition to next state
-                                $state.go('app.components');
-                              },
-                              function(err){
-                                alert('error retrieving token: ' + err);
-                                // transition to next state
-                                $state.go('app.components');
-                              }
-                            )
-                        }else{
-                            $state.go('app.components');
-                        }
+                                UserService.setCurrentUser(_response[0]);
 
+                                if(window.cordova && window.cordova.plugins){
+                                    FCMPlugin.getToken(
+                                      function(token){
+                                        //alert(token);
+                                        
+                                        // transition to next state
+                                        $state.go('app.components');
+                                      },
+                                      function(err){
+                                        alert('error retrieving token: ' + err);
+                                        // transition to next state
+                                        $state.go('app.components');
+                                      }
+                                    )
+                                }else{
+                                    $state.go('app.components');
+                                }
+                            }, function (_error) {
+                                alert("error getting user in " + _error.message);
+                            })
                     }, function (_error) {
                         alert("error logging in " + _error.message);
                     })
@@ -70,8 +76,6 @@ angular.module('user.controllers', [])
              *
              */
             $scope.signUpUser = function () {
-
-                //UserService.init();
 
                 UserService.createUser($scope.creds).then(function (_data) {
                     $scope.user = _data;
