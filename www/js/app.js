@@ -8,7 +8,8 @@ var app = angular.module('starter', [
     'ionic-material',
     'user.controllers',
     'user.services',
-    'dataStoreService.services'
+    'dataStoreService.services',
+    'starter.Directives'
     ]);
 
 app.value('ParseConfiguration', {

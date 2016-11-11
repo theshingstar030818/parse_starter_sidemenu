@@ -8,6 +8,7 @@ angular.module('user.services', [])
 
             return {
 
+                currentUserObject: null,
                 /**
                  *
                  * @returns {*}
@@ -38,9 +39,6 @@ angular.module('user.services', [])
                     var user = new Parse.User();
                     user.set("username", _userParams.email);
                     user.set("password", _userParams.password);
-                    user.set("email", _userParams.email);
-                    user.set("first_name", _userParams.first_name);
-                    user.set("last_name", _userParams.last_name);
 
                     // should return a promise
                     return user.signUp(null, {});
@@ -82,8 +80,24 @@ angular.module('user.services', [])
                     Parse.User.logOut();
                     defered.resolve();
                     return defered.promise;
-
+                },
+                // custom functions for user service
+                signUpCompany: function(signUpCompanyObject){
+                    return Parse.Cloud.run('signUpCompany', signUpCompanyObject, {});
+                },
+                getUser: function(_user){
+                    return Parse.Cloud.run('getUser', _user, {});
+                },
+                setCurrentUser: function(currentUser){
+                    //console.log("setCurrentUser : " + JSON.stringify(currentUser));
+                    this.currentUser = currentUser;
+                },
+                getCurrentUser: function(){
+                    //console.log("getCurrentUser : " + JSON.stringify(this.currentUserObject));
+                    return this.currentUserObject;
+                },
+                uploadProfilePicture: function(_imageObject){
+                    return Parse.Cloud.run('uploadProfilePicture', _imageObject, {});
                 }
-
             }
         }]);

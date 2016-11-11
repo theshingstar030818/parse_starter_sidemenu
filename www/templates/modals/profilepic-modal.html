@@ -1,0 +1,71 @@
+<!-- <ion-modal-view>
+    <ion-header-bar>
+        <h1 class="title">Profile</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+
+       <div class="list card">
+		  <div class="item item-body">
+		    <div class="row">
+		  		<div class="col col-50"> <img class="full-image" src="http://162.243.118.87:1338/parse/files/appID/8fc9b011-4fdb-4834-b660-3b7d1d00c2a4_11149239_10155501565985389_6734553146293736500_n.jpg"></div>
+		  		<div class="col"></div>
+		  		<div class="col"></div>
+			</div>
+
+			<div class="row">
+			  <div class="col">
+			  <input ng-model="data.pic" type="file" name="upload">
+			  <input type="text" ng-modal="data.searchText" name="">
+			  <a ng-click="closeModal()" class="subdued">Cancel</a>
+	      	  <a ng-click="uploadProfilePic()" class="subdued">Upload</a></div>
+			  <div class="col"></div>
+			</div>
+
+			
+		  </div>
+
+		</div>
+    </ion-content>
+</ion-modal-view> -->
+
+<ion-modal-view>
+	<ion-header-bar class="bar bar-header">
+	  <h1 class="title">Edit Profile</h1>
+	  <button class="button button-clear button-primary ion-android-cancel" ng-click="modal.hide()"></button>
+	</ion-header-bar>
+	<ion-content class="padding">
+	  <div class="list card">
+		  <div class="item item-body">
+		    <div class="row">
+		  		<div class="col col-50"> <img class="full-image" src="http://162.243.118.87:1338/parse/files/appID/8fc9b011-4fdb-4834-b660-3b7d1d00c2a4_11149239_10155501565985389_6734553146293736500_n.jpg"></div>
+		  		<div class="col"><input type="file" fileread="uploadProfilePicture.src" /></div>
+		  		<div class="col"></div>
+			</div>
+
+			<div class="row">
+			  <div class="col">
+			  
+	      	  <button class="button button-full button-positive" ng-click="uploadProfilePic()">Upload</button></div>
+			  <div class="col"></div>
+			</div>
+		  </div>
+
+		</div>
+
+	  <div class="list">
+	    <label class="item item-input">
+	      <span class="input-label">First Name</span>
+	      <input ng-model="newUser.firstName" type="text">
+	    </label>
+	    <label class="item item-input">
+	      <span class="input-label">Last Name</span>
+	      <input ng-model="newUser.lastName" type="text">
+	    </label>
+	    <label class="item item-input">
+	      <span class="input-label">Email</span>
+	      <input ng-model="newUser.email" type="text">
+	    </label>	    
+	    <button class="button button-full button-positive" ng-click="createContact(newUser)">Update Profile</button>
+	  </div>
+	</ion-content>
+</ion-modal-view>
