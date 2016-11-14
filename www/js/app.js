@@ -13,7 +13,8 @@ var app = angular.module('starter', [
     ]);
 
 app.value('ParseConfiguration', {
-    applicationId: "myAppId"
+    applicationId: "myAppId",
+    serverIPAdress: "162.243.118.87"
 })
 
 app.run(function ($ionicPlatform, UserService) {

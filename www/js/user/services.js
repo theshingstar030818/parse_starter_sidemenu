@@ -96,8 +96,10 @@ angular.module('user.services', [])
                     //console.log("getCurrentUser : " + JSON.stringify(this.currentUserObject));
                     return this.currentUserObject;
                 },
-                uploadProfilePicture: function(_imageObject){
-                    return Parse.Cloud.run('uploadProfilePicture', _imageObject, {});
+                uploadFile: function(_imageObject){
+                    _imageObject.user = Parse.User.current().toJSON();
+                    _imageObject.ext = /[^/]*$/.exec(_imageObject.src.match(/[^;]*/)[0])[0];
+                    return Parse.Cloud.run('uploadFile', _imageObject, {});
                 }
             }
         }]);

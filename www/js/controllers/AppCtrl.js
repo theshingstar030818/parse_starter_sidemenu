@@ -1,15 +1,21 @@
-app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout, UserService, $state, DataStoreService) {
+app.controller('AppCtrl', function ($scope, ParseConfiguration, $ionicModal, $ionicPopover, $timeout, UserService, $state, DataStoreService) {
     
     //Form data for the login modal
     $scope.loginData = {};
     $scope.currentUser = null;
-
+    $scope.ParseConfiguration = ParseConfiguration;
+    
     if(UserService.getCurrentUser() == null){
         //if the web user presses refresh button need to fetch this again
         UserService.getUser(Parse.User.current().toJSON())
             .then(function (_response) {
                 UserService.setCurrentUser(_response[0]);
                 $scope.currentUser = _response[0];
+                if($scope.currentUser.get("information").get("profilePhoto") != undefined){
+                    $scope.profilePic = $scope.currentUser.get("information").get("profilePhoto").get("file").url();
+                    $scope.profilePic = fixFileURL($scope.profilePic, $scope.ParseConfiguration.serverIPAdress);
+                }
+                
                 //console.log("user refetched : " + JSON.stringify(_response[0]));
             }, function (_error) {
                 alert("error getting user in " + _error.message);
@@ -85,14 +91,14 @@ app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout
     });
     $scope.uploadProfilePic = function(){
         if($scope.uploadProfilePicture.src){
-            var pictureObject = $scope.uploadProfilePicture;
-            var encodedData = window.btoa(pictureObject.src);
-            pictureObject.encodedData = encodedData;
-            pictureObject.user = $scope.currentUser.toJSON();
-            pictureObject.ext = /[^/]*$/.exec(pictureObject.src.match(/[^;]*/)[0])[0];
-            UserService.uploadProfilePicture(pictureObject)
+            $scope.uploadProfilePicture.fileType = "profilePicture";
+            UserService.uploadFile($scope.uploadProfilePicture)
                 .then(function (_response) {
                     console.log(_response);
+                    $scope.profilePic = fixFileURL(_response.get("file").url(), $scope.ParseConfiguration.serverIPAdress);
+                    $scope.currentUser.get("information").get("profilePhoto").set("file",_response);
+                    $scope.uploadProfilePicture.src = null;
+                    $scope.$apply();
                 }, function (_error) {
                     alert("error getting user in " + _error.message);
                 })
@@ -100,3 +106,7 @@ app.controller('AppCtrl', function ($scope, $ionicModal, $ionicPopover, $timeout
         
     }
 });
+
+function fixFileURL(oldURL, serverIPAdress){
+    return oldURL.replace("localhost", serverIPAdress);
+}
